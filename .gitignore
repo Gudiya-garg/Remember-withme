@@ -1,0 +1,34 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Build outputs
+dist/
+build/
+backend/dist/
+
+# Environment files - never commit real secrets
+.env
+.env.local
+.env.production
+
+# Local data persistence (runtime generated)
+backend/data/store.json
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor directories
+.vscode/
+.idea/
+
+# TypeScript build info
+*.tsbuildinfo
