@@ -411,6 +411,43 @@ export class GameGenerationAgent {
 
     choices.sort(() => 0.5 - Math.random());
 
+    // Song playlist — audio files must be placed in frontend/public/audio/
+    const songs = [
+      {
+        id: 'song-1',
+        title: 'Kabhi Kabhie Mere Dil Mein',
+        artist: 'Mukesh & Lata Mangeshkar',
+        audioUrl: '/audio/song1.mp3',
+        coverUrl: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=400&q=80',
+        memoryNote: {
+          en: 'Your favourite — played every afternoon on the Murphy radio.',
+          hi: 'आपका प्रिय गीत — हर दोपहर मर्फी रेडियो पर बजता था।'
+        }
+      },
+      {
+        id: 'song-2',
+        title: 'Lag Ja Gale',
+        artist: 'Lata Mangeshkar',
+        audioUrl: '/audio/song2.mp3',
+        coverUrl: 'https://images.unsplash.com/photo-1507838153414-b4b713384a76?auto=format&fit=crop&w=400&q=80',
+        memoryNote: {
+          en: 'A timeless melody you hummed while tending the marigolds.',
+          hi: 'गेंदे के फूलों की देखभाल करते हुए जो धुन आप गुनगुनाती थीं।'
+        }
+      },
+      {
+        id: 'song-3',
+        title: 'Ae Dil Hai Mushkil',
+        artist: 'Mohammed Rafi',
+        audioUrl: '/audio/song3.mp3',
+        coverUrl: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=400&q=80',
+        memoryNote: {
+          en: 'A golden melody from the radio your husband loved dearly.',
+          hi: 'वह सुनहरी धुन जो आपके पतिजी के रेडियो पर हमेशा गूंजती थी।'
+        }
+      }
+    ];
+
     return {
       id: `game-music-${songMem.id}`,
       profileId: profile.id,
@@ -421,8 +458,8 @@ export class GameGenerationAgent {
         hi: 'संगीत और सुरमयी यादें'
       },
       prompt: {
-        en: `You often hum "${songMem.title}". Who sang this timeless melody?`,
-        hi: `आप अक्सर "${songMem.title}" गुनगुनाती हैं। यह कालजयी गीत किसने गाया है?`
+        en: `You often hum "${songMem.title}". Listen to a melody and tell us who sang it.`,
+        hi: `आप अक्सर "${songMem.title}" गुनगुनाती हैं। एक धुन सुनिए और बताइए — यह किसने गाया है?`
       },
       supportiveHint: {
         en: 'This melody was often played on your vintage wooden radio in the afternoon.',
@@ -431,6 +468,7 @@ export class GameGenerationAgent {
       imageUrl: songMem.imageUrl,
       memoryRefId: songMem.id,
       memoryCategory: 'favorite',
+      songs,
       choices,
       metadata: {
         routineLabel: songMem.title

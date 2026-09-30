@@ -63,6 +63,20 @@ export interface GameChoice {
   image?: string;
 }
 
+/** A playable song entry inside the Music Memory game */
+export interface SongEntry {
+  id: string;
+  title: string;
+  /** e.g. "Mukesh & Lata Mangeshkar" */
+  artist: string;
+  /** Path served from /public/audio/, e.g. /audio/song1.mp3 */
+  audioUrl: string;
+  /** Optional cover image URL */
+  coverUrl?: string;
+  /** Short emotional memory note shown on the card */
+  memoryNote?: LocalizedString;
+}
+
 export interface SequenceItem {
   id: string;
   label: LocalizedString;
@@ -91,6 +105,8 @@ export interface Game {
   memoryCategory?: MemoryCategory;
   imageUrl?: string;
   audioSnippetTitle?: string;
+  /** Playlist used exclusively by the music_memory game type */
+  songs?: SongEntry[];
   choices?: GameChoice[];
   sequenceItems?: SequenceItem[];
   matchPairs?: MatchPair[];

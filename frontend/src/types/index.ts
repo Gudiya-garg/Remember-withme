@@ -63,6 +63,17 @@ export interface GameChoice {
   image?: string;
 }
 
+/** A playable song entry inside the Music Memory game */
+export interface SongEntry {
+  id: string;
+  title: string;
+  artist: string;
+  /** Path served from /public/audio/, e.g. /audio/song1.mp3 */
+  audioUrl: string;
+  coverUrl?: string;
+  memoryNote?: LocalizedString;
+}
+
 export interface SequenceItem {
   id: string;
   label: LocalizedString;
@@ -91,6 +102,8 @@ export interface Game {
   memoryCategory?: MemoryCategory;
   imageUrl?: string;
   audioSnippetTitle?: string;
+  /** Playlist used exclusively by the music_memory game type */
+  songs?: SongEntry[];
   choices?: GameChoice[];
   sequenceItems?: SequenceItem[];
   matchPairs?: MatchPair[];
